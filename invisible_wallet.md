@@ -8,7 +8,7 @@ identities.
 Many Web2 credentials, such as [OAuth credentials](https://datatracker.ietf.org/doc/html/rfc6749), are supported by major providers
 like Google, Apple, and Microsoft, which typically use the [RS256](https://auth0.com/docs/get-started/applications/signing-algorithms)
 algorithm (an asymmetric method). There are already solutions for building invisible wallets using OAuth credentials. However, Telegram
-uses a different authentication method, based on [HMAC256](hmac.md) (a symmetric algorithm), which requires a different solution.
+uses a different authentication method, based on [HMAC256](terms/hmac.md) (a symmetric algorithm), which requires a different solution.
 
 In this document, we will first explain the existing solution for OAuth providers. Then, we will explore several approaches to address
 the challenges with Telegram's authentication system. Although we have not yet developed a complete solution for Telegram, we hope this
@@ -39,7 +39,7 @@ steps [^1][^2]:
 ### Telegram Auth Mechanism [^3]
 
 To verify the authenticity of the data received from Telegram, compare the received hash parameter with the hexadecimal representation
-of the [HMAC-SHA-256](hmac.md) signature of the `data-check-string`. Use the SHA256 hash of the bot's token as the secret key.
+of the [HMAC-SHA-256](terms/hmac.md) signature of the `data-check-string`. Use the SHA256 hash of the bot's token as the secret key.
 
 The `data-check-string` is a concatenation of all received fields, sorted alphabetically – e.g.,
 `auth_date=<auth_date>\nfirst_name=<first_name>\nid=<id>\nusername=<username>`.
@@ -78,6 +78,10 @@ It is critical to prevent unauthorized access to the bot_token, as anyone with t
 **Note 2**: At present, there is no way to securely embed the bot_token inside the Zero-Knowledge circuit without exposing it to
 others. This limitation means the bot_token cannot be fully protected within the circuit, posing a security risk if it is accessed by
 unauthorized parties.
+
+#### An Attempt Solution Using Fully Homomorphic Commitment Scheme
+
+[This is an attempt](telegram_gsw.md) to realize this solution.
 
 [^1]: [zkLogin](https://docs.sui.io/concepts/cryptography/zklogin)
 [^2]: [Keyless Account](https://aptos.dev/en/build/guides/aptos-keyless/introduction)
