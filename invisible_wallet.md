@@ -54,6 +54,8 @@ if (hex(HMAC_SHA256(data_check_string, secret_key)) == hash) {
 }
 ```
 
+A proof of concept code is available [here](code/tele-login).
+
 ### Building Invisible Wallets for HMAC256 Providers
 
 The process for building invisible wallets with HMAC256-compatible providers like Telegram follows these steps:
@@ -79,7 +81,7 @@ It is critical to prevent unauthorized access to the bot_token, as anyone with t
 others. This limitation means the bot_token cannot be fully protected within the circuit, posing a security risk if it is accessed by
 unauthorized parties.
 
-#### An Attempt Solution Using Fully Homomorphic Commitment Scheme
+### An Attempt Solution Using Fully Homomorphic Commitment Scheme
 
 [This is an attempt](telegram_gsw.md) to realize this solution.
 

@@ -125,6 +125,8 @@ only Telegram and the bot owner know the `bot_token`, ensuring that no one else 
 The main challenge is designing an $\text{Open}$ function that can handle both addition and multiplication without revealing the
 underlying message. Currently, we can only perform secure addition, making the solution impractical for now.
 
+A proof of concept code is available [here](code/hmac256_fhe).
+
 ### Conclusion
 
 This approach is not feasible at present due to the inability to handle the required operations securely in an encrypted environment.
